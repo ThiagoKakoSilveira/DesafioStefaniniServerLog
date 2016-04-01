@@ -1,14 +1,13 @@
 package contadores;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class ContadorNavegador {
 	
-	private static int contMozilla, contChrome, contMSIE, contSafari, contOpera;
+	private int contMozilla, contChrome, contMSIE, contSafari, contOpera;
 	
 	public ContadorNavegador(String linha){
-		if(linha.indexOf("Mozilla")!=-1){
+		if(linha.indexOf("Firefox")!=-1){
 			contMozilla++;
 		}
 		if(linha.indexOf("Chrome")!=-1){
@@ -36,13 +35,16 @@ public class ContadorNavegador {
 		Arrays.sort(navegadores, Collections.reverseOrder());
 		
 		for (int i = 0; i < navegadores.length; i++) {
+			if(navegadores[i]==contMozilla)apresentacaoDoContador.append("Mozilla: "+contMozilla+"\n");
 			
+			if(navegadores[i]==contSafari)apresentacaoDoContador.append("Safari: "+contSafari+"\n");
+			
+			if(navegadores[i]==contChrome)apresentacaoDoContador.append("Chrome: "+contChrome+"\n");
+			
+			if(navegadores[i]==contMSIE)apresentacaoDoContador.append("Internet Explorer: "+contMSIE+"\n");
+			
+			if(navegadores[i]==contOpera)apresentacaoDoContador.append("Opera: "+contOpera+"\n");
 		}
-		apresentacaoDoContador.append("Mozilla: "+contMozilla+"\n");
-		apresentacaoDoContador.append("Chrome: "+contChrome+"\n");
-		apresentacaoDoContador.append("Internet Explorer: "+contMSIE+"\n");
-		apresentacaoDoContador.append("Safari: "+contSafari+"\n");
-		apresentacaoDoContador.append("Opera: "+contOpera+"\n");
 		return apresentacaoDoContador.toString();
 	}
 	
