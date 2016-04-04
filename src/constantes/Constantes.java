@@ -13,5 +13,7 @@ public interface Constantes {
 	final String MES10 = "Oct";
 	final String MES11 = "Nov";
 	final String MES12 = "Dec";
+	final long INTERVALOEMMILLIS = 1800000;
+	
 
 }

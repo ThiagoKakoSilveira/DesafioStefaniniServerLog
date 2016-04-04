@@ -6,7 +6,7 @@ public class ContadorNavegador {
 	
 	private int contMozilla, contChrome, contMSIE, contSafari, contOpera;
 	
-	public ContadorNavegador(String linha){
+	public void usarContador(String linha){
 		if(linha.indexOf("Firefox")!=-1){
 			contMozilla++;
 		}
@@ -21,7 +21,7 @@ public class ContadorNavegador {
 		}
 		if(linha.indexOf("Opera")!=-1){
 			contOpera++;
-		}
+		}		
 	}
 
 	@Override

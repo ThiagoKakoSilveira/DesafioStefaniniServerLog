@@ -5,7 +5,7 @@ public class ContadorSistemaOperacional {
 	
 	private int contWin, contIphone, contLinux, contAndroid, contMac;
 	
-	public ContadorSistemaOperacional(String linha){
+	public void usarContador(String linha){
 		if(linha.indexOf("Windows")!=-1){
 			contWin++;
 		}
@@ -20,7 +20,7 @@ public class ContadorSistemaOperacional {
 		}
 		if(linha.indexOf("Macintosh")!=-1){
 			contMac++;
-		}
+		}		
 	}
 	
 	@Override
@@ -33,7 +33,7 @@ public class ContadorSistemaOperacional {
 		Arrays.sort(sistemas);
 		
 		for (int i = 0; i < sistemas.length; i++) {
-//			System.out.println(sistemas[i]);
+
 			if(sistemas[i]==contWin)apresentacaoDoContador.append("Windows: "+contWin+"\n");				
 			
 			if(sistemas[i]==contLinux)apresentacaoDoContador.append("Linux: "+contLinux+"\n");

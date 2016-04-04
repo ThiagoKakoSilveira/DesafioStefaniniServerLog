@@ -1,23 +1,24 @@
 package sistema;
 
 import java.io.File;
-//import java.util.ArrayList;
-//import java.util.List;
 import java.util.Scanner;
 import contadores.*;
+import controladores.ControladorDeAcesso;
 import conversores.ConversorDeData;
-import comparadores.ControladorDeAcesso;
+import controladores.ControladorDeIntervalo;
+
 
 public class Principal {
 	
-	public String linha;
+	private String linha;
 //	public List<String> listaString = new ArrayList<>();
-	ContadorNavegador contNavegador;
-	ContadorSistemaOperacional contSO;
-	ConversorDeData converData;
-	Scanner ler;
-	ControladorDeAcesso acessos;
-		
+	private ContadorNavegador contNavegador;
+	private ContadorSistemaOperacional contSO;
+	private ConversorDeData convertData;
+	private Scanner ler, lerIp;
+	private ControladorDeAcesso controlAcessos;
+	private ControladorDeIntervalo controlIntervalo;
+			
 	public static void main(String[] args) {
 		new Principal();
 
@@ -27,6 +28,11 @@ public class Principal {
 		try {
 			String user = System.getProperty("user.home");
 			File folder = new File(user + File.separator + "accessLog" + File.separator);
+			contNavegador = new ContadorNavegador();
+			contSO = new ContadorSistemaOperacional();
+			convertData = new ConversorDeData();
+			controlAcessos = new ControladorDeAcesso();
+			controlIntervalo = new ControladorDeIntervalo();
 			for (File file : folder.listFiles()) {
 				if (file.getName().endsWith(".log")) {
 //					System.out.println(file);					
@@ -35,27 +41,26 @@ public class Principal {
 					while(ler.hasNext()){
 						String linhaInicial = ler.next();
 						linha = linhaInicial.substring(15);
-						contNavegador = new ContadorNavegador(linha);
-						contSO = new ContadorSistemaOperacional(linha);
-						converData = new ConversorDeData(linha);
-						//colocar a classe controlador mas antes pega da linha inicial o ip
-						
-						
-						
-//						System.out.println(converData.entregaDate());
-//						listaString.add(linha);
-//						System.out.println(linha);					
+						contNavegador.usarContador(linha);
+						contSO.usarContador(linha);
+						convertData.usarConversor(linha);
+						lerIp = new Scanner(linha);
+						lerIp.useDelimiter("- -");
+						String ip = lerIp.next().trim();
+						controlAcessos.adcionaNoMap(ip, convertData.entregaDate());
+						controlIntervalo.usarControlador(convertData.entregaLocalDate());
+												
 					}	
 				}	
 			}
 			System.out.println(contSO);
-			System.out.println(contNavegador);			
+			System.out.println(contNavegador);
+			System.out.println(controlAcessos.getContAcessos());
 		} catch (Exception e) {
 			System.out.println("ferro o principal");
 			e.printStackTrace();
 		} finally {
 			ler.close();			
 		}
-
 	}
 }
