@@ -13,7 +13,18 @@ public interface Constantes {
 	final String MES10 = "Oct";
 	final String MES11 = "Nov";
 	final String MES12 = "Dec";
+	
 	final long INTERVALOEMMILLIS = 1800000;
+	
+	final String DOCX = ".docx";
+	final String TXT = ".txt";
+	final String CSV = ".csv";
+	final String PNG = ".png";
+	final String JPG = ".jpg";
+	final String GIF = ".gif";
+	final String CSS = ".css";
+	final String JS = ".js";
+	final String I = ".i";
 	
 
 }

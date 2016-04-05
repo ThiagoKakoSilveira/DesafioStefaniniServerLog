@@ -1,6 +1,7 @@
 package modelos;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Intervalo {	
 	private long intervalo;
@@ -21,7 +22,7 @@ public class Intervalo {
 
 	@Override
 	public String toString() {
-		return "Intervalo [intervalo=" + intervalo + ", data=" + data + "]";
+		return "O intervalo em minutos é: "+(intervalo/60000)+ " no dia: "+data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))+"\n";
 	}
 	
 	

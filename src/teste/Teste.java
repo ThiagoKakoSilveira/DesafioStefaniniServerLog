@@ -1,21 +1,20 @@
 package teste;
-import java.util.Date;
+import java.util.Scanner;
 
-import controladores.ControladorDeAcesso;
-import controladores.ControladorDeIntervalo;
-import conversores.ConversorDeData;
+import contadores.*;
 
 public class Teste {
 	
-	private static String testeLinha = "177.44.240.52 - 46.165.197.142 - - [05/Jul/2015:09:03:16 -0300] ahjdkshajksdhueafe";
-//	private static ConversorDeData converte;
-	private static ControladorDeAcesso controlAccess;
-	private static ControladorDeIntervalo controlIntervalo;
+	private static String testeLinha = "177.44.240.52 - 177.97.91.238 - - [05/Jul/2015:21:32:52 -0300] \"GET /wp-content/themes/dominio/style.css HTTP/1.0\" 200 4022 \"http://www.dominio.com.br/nota-dominio-sobre-o-fies/";
+	private static ContadorDeBandaPorExtensao contBanda;
 
 	public static void main(String[] args) {
-//		controlIntervalo = new ControladorDeIntervalo(new Date());
-//		converte = new ConversorDeData(testeLinha);
-//		System.out.println(converte.entregaDate());
+//		System.out.println(testeLinha.split("200")[1].substring(1));
+//		Scanner ler = new Scanner(testeLinha.split("200")[1]);
+//		ler.useDelimiter("\"");
+//		System.out.println(ler.next().trim());
+		String linhaNova = testeLinha.substring(30);
+		System.out.println(linhaNova);
 		
 	}
 

@@ -18,6 +18,8 @@ public class Principal {
 	private Scanner ler, lerIp;
 	private ControladorDeAcesso controlAcessos;
 	private ControladorDeIntervalo controlIntervalo;
+	private Cronometro cronometro;
+	private ContadorDeBandaPorExtensao contBanda;
 			
 	public static void main(String[] args) {
 		new Principal();
@@ -25,6 +27,8 @@ public class Principal {
 	}
 
 	public Principal() {
+		cronometro = new Cronometro();
+		cronometro.begin();
 		try {
 			String user = System.getProperty("user.home");
 			File folder = new File(user + File.separator + "accessLog" + File.separator);
@@ -32,7 +36,8 @@ public class Principal {
 			contSO = new ContadorSistemaOperacional();
 			convertData = new ConversorDeData();
 			controlAcessos = new ControladorDeAcesso();
-			controlIntervalo = new ControladorDeIntervalo();
+			controlIntervalo = new ControladorDeIntervalo();	
+			contBanda = new ContadorDeBandaPorExtensao();
 			for (File file : folder.listFiles()) {
 				if (file.getName().endsWith(".log")) {
 //					System.out.println(file);					
@@ -48,19 +53,24 @@ public class Principal {
 						lerIp.useDelimiter("- -");
 						String ip = lerIp.next().trim();
 						controlAcessos.adcionaNoMap(ip, convertData.entregaDate());
-						controlIntervalo.usarControlador(convertData.entregaLocalDate());
-												
+						controlIntervalo.usarControlador(convertData.entregaLocalDate());						
+						contBanda.usarContador(linha);
+						
 					}	
 				}	
 			}
+			System.out.println(contBanda);
+			System.out.println(controlIntervalo.imprimeLista());		
 			System.out.println(contSO);
 			System.out.println(contNavegador);
 			System.out.println(controlAcessos.getContAcessos());
+			cronometro.close();	
 		} catch (Exception e) {
 			System.out.println("ferro o principal");
 			e.printStackTrace();
 		} finally {
-			ler.close();			
+			ler.close();
+			
 		}
 	}
 }

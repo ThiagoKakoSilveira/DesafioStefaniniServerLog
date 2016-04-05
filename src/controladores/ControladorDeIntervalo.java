@@ -3,9 +3,12 @@ package controladores;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
+
 import modelos.Intervalo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import constantes.Constantes;
 
@@ -29,6 +32,10 @@ public class ControladorDeIntervalo implements Constantes {
 	public long intervaloEntreDatas(LocalDateTime antiga, LocalDateTime nova){
 		Duration duracao = Duration.between(antiga, nova);
 		return duracao.toMillis();
+	}
+	
+	public String imprimeLista(){
+		return intervalos.stream().sorted(Comparator.comparing(Intervalo::getIntervalo).reversed()).limit(3).collect(Collectors.toList()).toString();		
 	}
 	
 
