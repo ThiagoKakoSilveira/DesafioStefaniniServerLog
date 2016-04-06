@@ -54,16 +54,17 @@ public class Principal {
 						String ip = lerIp.next().trim();
 						controlAcessos.adcionaNoMap(ip, convertData.entregaDate());
 						controlIntervalo.usarControlador(convertData.entregaLocalDate());						
-						contBanda.usarContador(linha);
-						
+						contBanda.usarContador(linha);						
 					}	
 				}	
 			}
-			System.out.println(contBanda);
+//			System.out.println(contBanda);
 			System.out.println(controlIntervalo.imprimeLista());		
 			System.out.println(contSO);
 			System.out.println(contNavegador);
 			System.out.println(controlAcessos.getContAcessos());
+			System.out.println("\nSegue abaixo linha com extensão e quantidade de banda consumida em bits:\n");
+			System.out.println(contBanda.getBandas().imprimir());			
 			cronometro.close();	
 		} catch (Exception e) {
 			System.out.println("ferro o principal");
